@@ -7,6 +7,7 @@ class InputSection extends StatefulWidget {
 
 class _InputSectionState extends State<InputSection> {
   var _text = '';
+  bool _visible = false;
 
   void output(String value) {
     var outtext = '';
@@ -24,11 +25,15 @@ class _InputSectionState extends State<InputSection> {
       case 'Arvid':
         outtext = 'Give me my slurry with cucumber... never gets bored';
         break;
+      case 'Alexey':
+        outtext = 'Where is Mikasa???';
+        break;
       default:
         outtext = 'No result';
     }
     setState(() {
       _text = outtext;
+      _visible = true;
     });
   }
 
@@ -49,15 +54,18 @@ class _InputSectionState extends State<InputSection> {
                     ),
                     onSubmitted: output)),
           ),
-          Container(
-            decoration: BoxDecoration(color: Colors.blue),
-            child: Text(
-              '$_text',
-              textAlign: TextAlign.center,
-            ),
-            height: 150.0,
-            padding: EdgeInsets.all(40),
-          )
+          AnimatedOpacity(
+              opacity: _visible ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 500),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.blue),
+                child: Text(
+                  '$_text',
+                  textAlign: TextAlign.center,
+                ),
+                height: 150.0,
+                padding: EdgeInsets.all(40),
+              ))
         ]);
   }
 }
