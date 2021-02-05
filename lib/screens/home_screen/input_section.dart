@@ -28,12 +28,25 @@ class _InputSectionState extends State<InputSection> {
       case 'Alexey':
         outtext = 'Where is Mikasa???';
         break;
+      case 'Vika':
+        outtext = 'Why aren\'t you in english?';
+        break;
+      case 'Tony':
+        outtext = 'I\'am Bucher';
+        break;
+      case 'Sveta':
+        outtext = 'I like gums';
+        break;
       default:
         outtext = 'No result';
     }
     setState(() {
       _text = outtext;
-      _visible = true;
+      if (value == '') {
+        _visible = false;
+      } else {
+        _visible = true;
+      }
     });
   }
 
